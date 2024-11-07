@@ -11,6 +11,9 @@ usuariosRoutes.get("/", (req, res) => {
     : `Total de usuários cadastrados: ${usuarios.length}`, 
     usuarios, 
     });
+    if(usuarios.length == 0) {
+        return res.status(404).json({ message: "Nenhum usuário cadastrado" });
+    }
 });
 
 
