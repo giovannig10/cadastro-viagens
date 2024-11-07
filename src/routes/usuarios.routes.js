@@ -17,12 +17,11 @@ usuariosRoutes.post("/", (req, res) => {
   if (!destino || !orcamento) {
     return res.status(400).json({ message: "Preencha os campos obrigatorios corretamente" });
   }
+
   if (status != "iniciada" && status != "planejando" && status != "finalizada") {
     return res.status(400).json({ message: "Status inválido" });
-    }
-    if (!objetivoViagem || objetivoViagem.length < 2) {
-    return res.status(400).json({ message: "O campo objetivoViagem deve conter no mínimo dois objetivos" });
   }
+
   const novoUsuario = { id: usuarios.length + 1, destino, orcamento, status, objetivoViagem };
   usuarios.push(novoUsuario);
   return res.status(201).json({ message: "Usuário cadastrado com sucesso", usuario: novoUsuario });
