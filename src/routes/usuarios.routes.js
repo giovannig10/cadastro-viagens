@@ -11,10 +11,26 @@ usuariosRoutes.get("/", (req, res) => {
     : `Total de usuários cadastrados: ${usuarios.length}`, 
     usuarios, 
     });
-    if(usuarios.length == 0) {
-        return res.status(404).json({ message: "Nenhum usuário cadastrado" });
-    }
 });
 
+usuariosRoutes.post("/", (req, res) => {
+  const {destino, orcamento, status, objetivosViagem } = req.body;
+
+  const novousuario = {
+    id: Math.floor(Math.random() * 1000000),
+    destino,
+     orcamento,
+     status, 
+     objetivosViagem 
+  };
+
+  // Adiciona o novo usuario ao array de usuarios
+  usuarios.push(novousuario);
+
+  return res.status(201).json({
+    message: "usuario cadastrado com sucesso!",
+    novousuario,
+  });
+});
 
 export default usuariosRoutes;
